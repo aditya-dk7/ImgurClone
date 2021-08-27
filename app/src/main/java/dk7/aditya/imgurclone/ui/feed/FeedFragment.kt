@@ -8,31 +8,35 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import dk7.aditya.imgurclone.R
+import dk7.aditya.imgurclone.databinding.FeedFragmentBinding
 
 class FeedFragment : Fragment() {
-
     companion object {
         fun newInstance() = FeedFragment()
     }
-
     private lateinit var viewModel: FeedViewModel
-
+    private var _binding: FeedFragmentBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         val feed = arguments?.getString("feed")
-        val rootView = inflater.inflate(R.layout.feed_fragment, container, false)
+        _binding = FeedFragmentBinding.inflate(inflater, container, false)
         feed?.let {
-            rootView.findViewById<TextView>(R.id.tvTextView).text = it
+            binding.tvTextView.text = feed.toString()
         }
-        return rootView
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

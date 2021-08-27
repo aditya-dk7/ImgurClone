@@ -9,7 +9,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dk7.aditya.imgurclone.databinding.ActivityMainBinding
-import dk7.aditya.libimgur.ImgurApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
