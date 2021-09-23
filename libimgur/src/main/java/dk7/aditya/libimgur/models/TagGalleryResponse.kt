@@ -1,11 +1,15 @@
 package dk7.aditya.libimgur.models
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Processing(
+data class TagGalleryResponse(
+    @Json(name = "data")
+    val `data`: Tag?,
     @Json(name = "status")
-    val status: String
-)
+    val status: Int?,
+    @Json(name = "success")
+    val success: Boolean?
+) {
+}
